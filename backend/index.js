@@ -7,15 +7,14 @@ dotenv.config({});
 
 const app = express();
 
-// Custom CORS Middleware to manually set the headers
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173"); // Allow specific origin
-  res.setHeader("Access-Control-Allow-Credentials", "true"); // Allow credentials like cookies
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, DELETE, OPTIONS"
-  ); // Allow specific HTTP methods
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Allow specific headers
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
 
