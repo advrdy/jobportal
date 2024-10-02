@@ -3,16 +3,18 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
 
-dotenv.config({});    
+dotenv.config({});
 
 const app = express();
 
-// Custom CORS Middleware to manually set the headers
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173"); // Allow specific origin
-  res.setHeader("Access-Control-Allow-Credentials", "true"); // Allow credentials like cookies
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Allow specific HTTP methods
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Allow specific headers
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
 
@@ -24,11 +26,11 @@ app.get("/home", (req, res) => {
 });
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));    
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const PORT=process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    connectDB();
+  connectDB();
   console.log(`Server running on Port ${PORT}`);
 });
