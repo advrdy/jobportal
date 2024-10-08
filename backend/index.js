@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
+import userRoute from "./routes/user.route.js";
 
 dotenv.config({});
 
@@ -18,16 +19,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/home", (req, res) => {
-  return res.status(200).json({
-    message: "https://i.ibb.co/wCzqmTr/1123.png",
-    success: true,
-  });
-});
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.use("/api/v1/user", userRoute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
